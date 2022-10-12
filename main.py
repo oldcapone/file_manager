@@ -21,6 +21,7 @@ import shutil
 import platform
 import viktorina
 import my_chet
+import functions
 
 name = "НЕТ"
 histoty = []
@@ -83,7 +84,7 @@ while True:
         print(platform.uname())
         #создатель программы;
     elif choice == '8':
-        print("Разработчик: Иванов Игорь")
+        print(functions.avtor())
         # играть в викторину
     elif choice == '9':
         viktorina.get_person_and_question()
