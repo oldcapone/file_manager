@@ -36,6 +36,7 @@ while True:
     print('8. создатель программы')
     print('9. играть в викторину')
     print('10. мой банковский счет')
+    print('11. Cохранить содержимое рабочей директории в файл')
     print('0. выход')
 
     choice = input('Выберите пункт меню: ')
@@ -73,12 +74,10 @@ while True:
 
         #5 посмотреть только папки
     elif choice == '5':
-        dirs = [d for d in os.listdir() if os.path.isdir(os.path.join(d))]
-        print(dirs)
+        print(functions.dirs())
         #6 посмотреть только файлы
     elif choice == '6':
-        files = [d for d in os.listdir() if os.path.isfile(os.path.join(d))]
-        print(files)
+        print(functions.files())
         # 7 просмотр информации об операционной системе
     elif choice == '7':
         print(platform.uname())
@@ -91,7 +90,17 @@ while True:
         # 10. мой банковский счет
     elif choice == '10':
         my_chet.start()
-
+# Запись в файл сначала все файлы, потом все папки
+    elif choice == '11':
+        #Отрываем файл для записи
+        with open('listdir.txt', 'w') as f:
+            f.write(f'files: {functions.files()}\n')
+            f.write(f'dir: {functions.dirs()}')
+        # Отрываем файл для просмотра
+        with open('listdir.txt', 'r') as f:
+            # 1. Прочитать файл
+            result = f.read()
+            print(f'Содержимое файла\n',result)
     elif choice == '0':
         break
     else:
