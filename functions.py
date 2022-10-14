@@ -1,13 +1,20 @@
 import pytest
 import math
+import os
 
 #Функции файлового менеджера
 def avtor():
     fio = "Игорь Иванов"
     return fio
+#Просмотр файлов в директории
+def files():
+    files = [d for d in os.listdir() if os.path.isfile(os.path.join(d))]
+    return files
 
-
-
+#Просмотр папок в директории
+def dirs():
+    dirs = [d for d in os.listdir() if os.path.isdir(os.path.join(d))]
+    return dirs
 
 #Функции для тестирования менеджера
 #Функция фильтрует все числа более 3
