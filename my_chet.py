@@ -24,27 +24,39 @@ def start():
 
         choice = input('Выберите пункт меню: ')
         if choice == '1':
-            plus = float(input("Введите сумму на сколько пополнить счет: "))
-            chet = chet + plus
-            with open('balans.txt', 'w') as f:
-                f.write(str(chet))
-            print(f'Сейчас на счету {chet} руб')
-        elif choice == '2':
-             buy = float(input("Введите сумму покупки: "))
-             if buy>chet:
-                print("Денег не хватает")
-             else:
-                chet -= buy
-                name = (input("Введите название покупки: "))
-                histoty.append((name , buy))
+            try:
+                # Тот код который может вызвать исключение
+                plus = float(input("Введите сумму на сколько пополнить счет: "))
+                chet = chet + plus
                 with open('balans.txt', 'w') as f:
                     f.write(str(chet))
-                with open('buy.txt', 'a') as f:
-                    dt = datetime.now()
-                    dt_byu = dt.strftime('%H:%M:%S - %m.%d.%Y')
-                    f.write("\n")
-                    f.write(f'{dt_byu} ')
-                    f.write(f' {name , buy}')
+                print(f'Сейчас на счету {chet} руб')
+            except:
+                # Этот блок срабатывает если было исключение
+                print('Вы ввели не число')
+                print('Введите верное число')
+        elif choice == '2':
+            try:
+                 buy = float(input("Введите сумму покупки: "))
+                 if buy>chet:
+                    print("Денег не хватает")
+                 else:
+                    chet -= buy
+                    name = (input("Введите название покупки: "))
+                    histoty.append((name , buy))
+                    with open('balans.txt', 'w') as f:
+                        f.write(str(chet))
+                    with open('buy.txt', 'a') as f:
+                        dt = datetime.now()
+                        dt_byu = dt.strftime('%H:%M:%S - %m.%d.%Y')
+                        f.write("\n")
+                        f.write(f'{dt_byu} ')
+                        f.write(f' {name , buy}')
+            except:
+                # Этот блок срабатывает если было исключение
+                print('Вы ввели не число')
+                print('Введите верное число')
+
         elif choice == '3':
             print(f'Последние покупки:', histoty)
             with open('buy.txt', 'r') as f:

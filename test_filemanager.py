@@ -1,4 +1,4 @@
-from functions import avtor, dirs, files
+from functions import avtor, dirs, files, add_separators
 import os
 from my_chet import start
 
